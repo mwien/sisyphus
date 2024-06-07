@@ -1,0 +1,9 @@
+[package]
+name = "sisyphus"
+version = "0.1.0"
+authors = ["Marcel Wienöbst <m.wienoebst@uni-luebeck.de"]
+edition = "2021"
+
+[dependencies]
+rand = "0.8"
+signal-hook = "0.3.17"
