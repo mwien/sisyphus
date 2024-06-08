@@ -254,24 +254,14 @@ pub fn sifting_heuristic(_g: &BipartiteGraph, sccs: &Vec<SCC>) -> Vec<usize> {
                     first_bestperm_perscc[i] = perm[i].clone();
                 }
             }
-            for i in 0..sccs.len() {
-                for j in 0..perm[i].len() {
-                    if GLOBAL_ABORT.load(Ordering::Relaxed) {
-                        return map_to_original_labels(&first_bestperm_perscc, sccs);
-                    }
-                    for k in (j+1)..perm[i].len() {
-                        freqs_per_scc[i][perm[i][j]][perm[i][k]] += 1;
-                    }
-                }
-            }
         }
     } 
-    let mut bestval_perscc = Vec::new(); //vec![u64::MAX; newsccs.len()];
-    let mut bestperm_perscc = Vec::new(); //vec![Vec::new(); newsccs.len()]; 
+    let mut bestval_perscc = Vec::new(); 
+    let mut bestperm_perscc = Vec::new(); 
     let mut newsccs: Vec<SCC> = Vec::new();
     // PART 2: reduce edges which always incur costs and recompute sccs
     // remove edges -> maybe have lower bound on number of iterations
-    // this can never run at timeout -> no need to insert breaks/returns
+    // this can never run at timeout 5 min -> no need to insert breaks/returns
     for i in 0..sccs.len() {
         let scc = &sccs[i];
         let mut h = vec![Vec::new(); scc.n];
