@@ -24,14 +24,8 @@ cargo build --release
 ```
 
 # Run
-After the build is completed, the tool can either be executed directly via
+After the build is completed, the tool can be executed via:
 
 ```
 ./target/release/sisyphus < <instance.gr>
-```
-
-or by using Cargo
-
-```
-cargo run --release < <instance.gr>
 ```
